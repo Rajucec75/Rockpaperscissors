@@ -11,7 +11,7 @@ console.log("Hello");
 //  3a. Paper - Paper = tie
 
 
-function generateComputerchoice() {
+function generateComputerchoice() {  // this function generates random computer selection and returns it back to calling module
     // initialise array with valid selection values
     let selectionValues = ["rock","paper","scissor"];
 
@@ -24,63 +24,65 @@ function generateComputerchoice() {
 
     //return selection
 
-
     return computerSelection;
 }
 
 
 
 
-function capturePlayerchoice(){
+function capturePlayerchoice(){  // this function prompts user to provide valid selection and returns it back to calling module
+    // capture player choice
     let playerChoice = prompt("Enter choice");
+    // Convert the user text to lowercase
     let lowercaseChoice = playerChoice.toLowerCase();
-
+    
+    //Check for valid user selection
     if ((lowercaseChoice !== "rock")&& (lowercaseChoice !== "paper") && (lowercaseChoice !== "scissor")) {
-        console.log("Invalid Choice. Please select - rock, paper or scissor");
-        return capturePlayerchoice();
+        console.log("Invalid Choice. Please select - rock, paper or scissor"); // display invalid selection message back to player
+        return capturePlayerchoice(); //Promt user for valid selection
     } 
     
-    return lowercaseChoice;
+    return lowercaseChoice; //retrun player selection 
     
 
 }
 
-function determineWinner(computerSelection,lowercaseChoice){
+function determineWinner(computerSelection,lowercaseChoice){   // this function determines the winner by comparing the computer selection with that of player selections
 
     let declareWinner;
 
-    if (computerSelection == "rock" ) {
+    if (computerSelection == "rock" ) {                 // Determine the winner when computer selection is rock with that of player selection
         if (lowercaseChoice == "paper") {
-            declareWinner = "Player 1 wins";
+            declareWinner = "You Win! Paper beats Rock";
             
         }
-            else if (lowercaseChoice == "scissor")  {
-            declareWinner = "Computer wins";
+            else if (lowercaseChoice == "scissor")  {       
+            declareWinner = "Computer wins, Rock beats scissor";
             
-        } else declareWinner = "its a tie";
+        } else declareWinner = "It's a tie";
 
-    } else if (computerSelection == "paper") {
+    } else if (computerSelection == "paper") {             // Determine the winner when computer selection is paper with that of player selection
         if (lowercaseChoice == "scissor") 
-            declareWinner = "Player 1 wins";
+            declareWinner = "You Win! Scissor beats Paper";
             else if (lowercaseChoice == "rock") 
-            declareWinner = "Computer wins";
-            else declareWinner = "its a tie";
+            declareWinner = "Computer wins, Paper beats Rock";
+            else declareWinner = "It's a tie";
 
 
-    } else if (computerSelection == "scissor") {
+    } else if (computerSelection == "scissor") {           // Determine the winner when computer selection is scissor with that of player selection
         if (lowercaseChoice == "rock") 
-            declareWinner = "Player 1 wins";
+            declareWinner = "You Win! Rock beats Scissor";
             else if (lowercaseChoice == "paper") 
-            declareWinner = "Computer wins";
-            else declareWinner = "its a tie";
+            declareWinner = "Computer wins, Scissor beats paper";
+            else declareWinner = "It's a tie";
 
     } 
 
-    return declareWinner;
+    return declareWinner;    //Return the winner to calling module 
 }
 
-let computerSelection = generateComputerchoice();
+let computerSelection = generateComputerchoice();  //Generate computer selection
 console.log(computerSelection);
-let lowercaseChoice = capturePlayerchoice();
+let lowercaseChoice = capturePlayerchoice();       //Capture Player selection
 console.log(lowercaseChoice);
-console.log(determineWinner(computerSelection, lowercaseChoice));
+console.log(determineWinner(computerSelection, lowercaseChoice));  //Determine the winner
